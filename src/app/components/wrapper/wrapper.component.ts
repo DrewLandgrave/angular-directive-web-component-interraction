@@ -1,9 +1,6 @@
-import {Component, ElementRef, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
-import { ComponentWrapperLoaderService } from '../../services/component-wrapper-loader/component-wrapper-loader.service';
-import {CustomFormComponent} from '../../interfaces/custom-form-component.interface';
-import {CustomWcFormComponentInterface} from '../../interfaces/custom-wc-form-component.interface';
-import { PanelComponent } from '../panel/panel.component';
-import { CustomComponent } from '../../interfaces/custom-component.interface';
+import { Component, ElementRef, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { CustomFormComponent } from '../../interfaces/custom-form-component.interface';
+import { CustomWcFormComponentInterface } from '../../interfaces/custom-wc-form-component.interface';
 
 @Component({
   selector: 'advtech-wrapper',

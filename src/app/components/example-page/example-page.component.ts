@@ -1,10 +1,8 @@
-import {AfterViewInit, Component, ComponentRef, OnInit, Renderer2, ViewChild, ViewContainerRef} from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
-import {AdvtechTextInputComponent} from '../../components/advtech-text-input/advtech-text-input.component';
-import {ComponentWrapperLoaderService} from '../../services/component-wrapper-loader/component-wrapper-loader.service';
-import {EnvConfigService} from '../../services/env-config/env-config.service';
-import {SyncWcFieldDirective} from '../../directives/sync-wc-field/sync-wc-field.directive';
-import {WrapperComponent} from '../wrapper/wrapper.component';
+import { AfterViewInit, Component, OnInit, ViewChild, ViewContainerRef, Renderer2 } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { PageBuilderService } from 'src/app/services/page-builder/page-builder.service';
+import { AdvtechTextInputComponent } from '../../components/advtech-text-input/advtech-text-input.component';
+import { EnvConfigService } from '../../services/env-config/env-config.service';
 
 @Component({
     selector: 'app-example-page',
@@ -16,18 +14,19 @@ export class ExamplePageComponent implements OnInit, AfterViewInit {
 
     form: FormGroup;
 
-    @ViewChild('mainColumn', {read: ViewContainerRef, static: false})
+    @ViewChild('mainColumn', { read: ViewContainerRef, static: false })
     mainColumn: ViewContainerRef;
 
-    @ViewChild('master', {static: true})
+    @ViewChild('master', { static: true })
     master: AdvtechTextInputComponent;
 
-    wrapperRegistry: { [key: string]: ComponentRef<WrapperComponent> } = {};
+    viewContainerRefRegistry: { [key: string]: ViewContainerRef } = {};
 
     constructor(
         private envConfigService: EnvConfigService,
-        private componentWrapperLoaderService: ComponentWrapperLoaderService,
+        private pageBuilderService: PageBuilderService,
         private renderer: Renderer2) {
+            pageBuilderService.renderer = renderer;
     }
 
     ngOnInit() {
@@ -44,30 +43,16 @@ export class ExamplePageComponent implements OnInit, AfterViewInit {
 
     ngAfterViewInit(): void {
         this.config = this.envConfigService.getConfig();
+        this.viewContainerRefRegistry['mainColumn'] = this.mainColumn;
         this.buildPage();
     }
 
     private buildPage() {
-        this.config.columns.mainColumn.forEach(config => {
-            const panel = this.componentWrapperLoaderService.loadComponent(this.mainColumn);
-            panel.instance.createElement(config);
-            config.children.forEach(childConfig => {
-                const wrapperComponentComponentRef: ComponentRef<WrapperComponent> =
-                    this.componentWrapperLoaderService.loadComponent(panel.instance.insertionPoint);
-                wrapperComponentComponentRef.instance.createElement(childConfig);
-                this.wrapperRegistry[childConfig.formName] = wrapperComponentComponentRef;
-                (panel.instance.element as any).insertChild(wrapperComponentComponentRef.hostView);
-                const domElement = document.createElement(childConfig.tag);
-                domElement.label = childConfig.label;
-            });
+        Object.keys(this.config.columns).forEach(key => {
+            this.pageBuilderService.buildColumns(this.config.columns[key], this.viewContainerRefRegistry[key]);
         });
 
-        this.config.syncConfig.forEach(config => {
-            const slaveWrapperComponent = this.wrapperRegistry[config.slave];
-            const directive = new SyncWcFieldDirective(slaveWrapperComponent.instance.elementRef, this.renderer);
-            directive.parent = this.wrapperRegistry[config.master].instance.element;
-            directive.self = slaveWrapperComponent.instance.element;
-            directive.ngAfterViewInit();
-        });
+        this.pageBuilderService.initSyncFields(this.config.syncConfig);
+
     }
 }
