@@ -1,0 +1,16 @@
+<p style="color: white; padding: 5px;">The 2 fields with sync buttons in the Seo panel are syncing with the Headline field in the Main Details Panel</p>
+<form [formGroup]="form">
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Hardcoded Elements
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <advtech-text-input advtechWcFormControl formControlName="master" #master label="Master Field"></advtech-text-input>
+        <advtech-text-input advtechWcFormControl formControlName="sync" #sync label="Sync Field" advtechSyncField [parent]="master" [self]="sync" appendTarget='mat-form-field'></advtech-text-input>
+    </mat-expansion-panel>
+
+
+</form>
+
+<div #mainColumn></div>

@@ -1,0 +1,30 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background: #424242;
+}
+$sync-button-color: #ffffff;
+
+.sync-button {
+  background: transparent;
+  color: $sync-button-color;
+  position: absolute;
+  right: 17px;
+  top: 8px;
+  font-size: 16px;
+  border: none;
+}
+
+mat-form-field {
+  width: 100%;
+
+  .has-sync-button {
+    display: flex;
+  }
+}
