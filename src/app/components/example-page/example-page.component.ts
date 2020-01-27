@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, OnInit, ViewChild, ViewContainerRef, Renderer2 } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { PageBuilderService } from 'src/app/services/page-builder/page-builder.service';
+import { PageBuilderService } from '../../services/page-builder/page-builder.service';
 import { AdvtechTextInputComponent } from '../../components/advtech-text-input/advtech-text-input.component';
 import { EnvConfigService } from '../../services/env-config/env-config.service';
 

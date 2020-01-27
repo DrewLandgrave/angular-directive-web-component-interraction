@@ -1,7 +1,7 @@
 import { ComponentWrapperLoaderService } from "../component-wrapper-loader/component-wrapper-loader.service";
 import { WrapperComponent } from '../../components/wrapper/wrapper.component';
 import { ViewContainerRef, Injectable, ComponentRef, Renderer2 } from '@angular/core';
-import { SyncFieldDirective } from 'src/app/directives/sync-field/sync-field.directive';
+import { SyncFieldDirective } from '../../directives/sync-field/sync-field.directive';
 
 @Injectable({
     providedIn: 'root'

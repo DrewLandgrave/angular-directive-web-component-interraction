@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, ElementRef, ChangeDetectorRef, ViewChild, AfterViewInit } from '@angular/core';
-import { CustomFormComponent } from 'src/app/interfaces/custom-form-component.interface';
+import { CustomFormComponent } from '../../interfaces/custom-form-component.interface';
 
 @Component({
   selector: 'advtech-advtech-textarea-input',
