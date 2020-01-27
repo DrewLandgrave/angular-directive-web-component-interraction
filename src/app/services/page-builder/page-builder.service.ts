@@ -1,7 +1,7 @@
 import { ComponentWrapperLoaderService } from "../component-wrapper-loader/component-wrapper-loader.service";
 import { WrapperComponent } from '../../components/wrapper/wrapper.component';
 import { ViewContainerRef, Injectable, ComponentRef, Renderer2 } from '@angular/core';
-import { SyncWcFieldDirective } from 'src/app/directives/sync-wc-field/sync-wc-field.directive';
+import { SyncFieldDirective } from 'src/app/directives/sync-field/sync-field.directive';
 
 @Injectable({
     providedIn: 'root'
@@ -33,7 +33,7 @@ export class PageBuilderService {
     initSyncFields(configs){
         configs.forEach(config => {
             const slaveWrapperComponent = this.wrapperRegistry[config.slave];
-            const directive = new SyncWcFieldDirective(slaveWrapperComponent.instance.elementRef, this.renderer);
+            const directive = new SyncFieldDirective(slaveWrapperComponent.instance.elementRef, this.renderer);
             directive.parent = this.wrapperRegistry[config.master].instance.element;
             directive.self = slaveWrapperComponent.instance.element;
             directive.ngAfterViewInit();

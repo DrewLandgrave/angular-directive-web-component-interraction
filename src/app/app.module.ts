@@ -15,7 +15,6 @@ import {PanelModule} from './components/panel/panel.module';
 import {WrapperComponent} from './components/wrapper/wrapper.component';
 import {MainColumnDirective} from './directives/main-column/main-column.directive';
 import {SyncFieldDirective} from './directives/sync-field/sync-field.directive';
-import {SyncWcFieldDirective} from './directives/sync-wc-field/sync-wc-field.directive';
 import {WebComponentFormControlDirective} from './directives/web-component-form-control/web-component-form-control.directive';
 
 
@@ -30,7 +29,6 @@ const appRoutes: Routes = [
     WrapperComponent,
     MainColumnDirective,
     SyncFieldDirective,
-    SyncWcFieldDirective,
     WebComponentFormControlDirective,
   ],
   entryComponents: [WrapperComponent],

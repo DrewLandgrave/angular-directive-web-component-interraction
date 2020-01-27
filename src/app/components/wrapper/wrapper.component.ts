@@ -1,6 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { CustomFormComponent } from '../../interfaces/custom-form-component.interface';
-import { CustomWcFormComponentInterface } from '../../interfaces/custom-wc-form-component.interface';
 
 @Component({
   selector: 'advtech-wrapper',
@@ -8,7 +7,7 @@ import { CustomWcFormComponentInterface } from '../../interfaces/custom-wc-form-
   styleUrls: ['./wrapper.component.scss']
 })
 export class WrapperComponent implements OnInit {
-  public element: CustomFormComponent & CustomWcFormComponentInterface;
+  public element: CustomFormComponent;
   public elementRef: ElementRef;
 
   @ViewChild('insertionPoint', {read: ViewContainerRef, static: true })
