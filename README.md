@@ -19,4 +19,24 @@ The directive is attached as below
 <advtech-text-input advtechWcFormControl formControlName="sync" #sync label="Sync Field" advtechSyncField [parent]="master" [self]="sync" appendTarget='mat-form-field'></advtech-text-input>
 ```
 
+## Angular Elements Caveat
+### this scoping inside your elements
+In angular elements if you do the following
+
+```ts
+export class MyCustomComponent {
+    @Input()
+    myFunction(){}
+}
+```
+`this` inside the function will be assigned to the HTMLElement you called it from. However if you do the following:
+
+```ts
+export class MyCustomComponent {
+    @Input()
+    myFunction = () => {}
+}
+```
+`this` will be assinged to `MyCustomComponent`
+
 See an example of this running on [StackBlitz ⚡️](https://stackblitz.com/edit/angular-directive-web-component-interraction)
