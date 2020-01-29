@@ -2,7 +2,7 @@
 
 [Edit on StackBlitz ⚡️](https://stackblitz.com/edit/angular-directive-web-component-interraction)
 
-This repo is built off of the [angular-config-drive-layout](https://github.com/DrewLandgrave/angular-config-driven-layout). See that repo for a explanation of how the page is built.
+This repo is built off of the [angular-config-driven-layout](https://github.com/DrewLandgrave/angular-config-driven-layout). See that repo for a explanation of how the page is built.
 
 ## Directives
 ### SyncFieldDirective
